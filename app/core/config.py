@@ -1,6 +1,7 @@
 import secrets
 from typing import List, Union
-from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, Field, field_validator
+from pydantic_settings import BaseSettings
+from pydantic import AnyHttpUrl, Field, field_validator
 
 # Base Configuration
 class Settings(BaseSettings):
@@ -14,7 +15,7 @@ class Settings(BaseSettings):
     CORS_ORIGINS: List[Union[AnyHttpUrl, str]] = ["http://localhost:3000"]
 
     # Database
-    DATABASE_URL: PostgresDsn = "postgresql://postgres:postgres@localhost/ai_interviewer"  #TODO: CHANGE URL
+    DATABASE_URL: str = "postgresql://postgres:postgres@localhost/ai_interviewer"  #TODO: CHANGE URL
 
     # AI model config
     AI_MODEL_NAME: str = "gpt-4o"
