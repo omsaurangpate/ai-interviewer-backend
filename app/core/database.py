@@ -23,6 +23,7 @@ Base = declarative_base()
 # Logger setup
 logger = logging.getLogger(__name__)
 
+# DB connection
 def get_db():
     db = SessionLocal()
     try:
