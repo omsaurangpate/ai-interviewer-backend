@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     # Security
     SECRET_KEY: str = Field(default_factory=lambda: secrets.token_urlsafe(32))
 
+    # Access token expiry
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
+
     # CORS
     CORS_ORIGINS: List[Union[AnyHttpUrl, str]] = ["http://localhost:3000"]
 
@@ -32,9 +35,9 @@ class Settings(BaseSettings):
     # Validate CORS
     @field_validator("CORS_ORIGINS", mode="before")
     @classmethod
-    def parse_cors_origins(cls, value):
-        if isinstance(value, str):
-            return [origin.strip() for origin in value.split(",")]
-        return value
+    def parse_cors_origins(cls, v):
+        if isinstance(v, str):
+            return [origin.strip() for origin in v.split(",")]
+        return v
 
 settings = Settings()
