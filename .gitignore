@@ -3,3 +3,6 @@
 
 # Raw Code
 raw_code.txt
+
+# Security
+app/core/security.py
